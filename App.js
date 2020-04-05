@@ -1,40 +1,28 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 
 export default function App() {
-  const [name, setName] = useState("Saugat Bhattarai");
-  const [age, setAge] = useState(30);
-
-  // changeName = () => {
-  //   setName("Tilak Basyal");
-  //   setPerson({ name: "Tilak basyal", age: 45 });
-  // };
+  const [people, setPeople] = useState([
+    { name: "Saugat", key: "1" },
+    { name: "Tilak", key: "2" },
+    { name: "Sarin", key: "3" },
+    { name: "Manisha", key: "4" },
+    { name: "Ayush", key: "5" },
+    { name: "Kamal", key: "6" },
+    { name: "Ravi", key: "7" },
+    { name: "Bharat", key: "8" },
+    { name: "Saggi", key: "9" }
+  ]);
 
   return (
     <View style={styles.container}>
-      <View>
-        <Text>Enter Your Name</Text>
-        <TextInput
-          multiline
-          style={styles.input}
-          placeholder="e.g. Tilak Basyal"
-          onChangeText={val => setName(val)}
-        />
-        <Text>Enter Your Age</Text>
-        <TextInput
-          keyboardType="numeric"
-          style={styles.input}
-          placeholder="e.g. 99"
-          onChangeText={val => setAge(val)}
-        />
-        <Text>
-          My name is {name} and age is {age}.
-        </Text>
-      </View>
-
-      {/* <View style={styles.buttonContainer}>
-        <Button title="Update State" />
-      </View> */}
+      <ScrollView>
+        {people.map(item => (
+          <Text style={styles.item} key={item.key}>
+            My name is {item.name}
+          </Text>
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -43,17 +31,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    paddingTop: 40,
+    paddingHorizontal: 20
+    // justifyContent: "center"
   },
-  buttonContainer: {
-    marginTop: 20
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "#777",
-    padding: 8,
-    margin: 10,
-    width: 200
+  item: {
+    marginTop: 24,
+    padding: 30,
+    backgroundColor: "pink",
+    fontSize: 24
   }
 });
